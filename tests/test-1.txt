@@ -1,0 +1,170 @@
+"""
+Python Documentation
+====================
+
+Introduction
+------------
+Python is an interpreted, high-level, general-purpose programming language. Created by Guido van Rossum and first released in 1991, Python's design philosophy emphasizes code readability with its notable use of significant whitespace. Its language constructs and object-oriented approach aim to help programmers write clear, logical code for small and large-scale projects.
+
+Key Features
+------------
+1. **Easy to Learn and Use**: Python is easy to learn and use. It is developer-friendly and high-level programming language.
+2. **Expressive Language**: Python can perform complex tasks using a few lines of code.
+3. **Interpreted Language**: Python is an interpreted language, which means that Python code is executed line by line.
+4. **Cross-platform Language**: Python can run equally on different platforms such as Windows, Linux, Unix, and Macintosh.
+5. **Free and Open Source**: Python is freely available to download and use. Its source code is also available, making it open-source.
+6. **Object-Oriented Language**: Python supports object-oriented language and concepts of classes and objects.
+7. **Extensible**: Python can be extended to other languages. You can write some of your Python code in other languages like C++.
+8. **Large Standard Library**: Python has a large and broad library and provides rich sets of modules and functions for rapid application development.
+9. **GUI Programming Support**: Python supports GUI applications that can be created and ported to many system calls, libraries, and windows systems, such as Windows MFC, Macintosh, and the X Window system of Unix.
+10. **Integrated**: Python can be easily integrated with languages like C, C++, and Java.
+
+Python Syntax
+-------------
+Python syntax is the set of rules that defines how a Python program will be written and interpreted (by both the runtime system and by human readers). Python was designed to be a highly readable language. It aims to produce code that is clear and easy to understand.
+
+### Indentation
+Python uses indentation to indicate a block of code. Proper indentation is crucial in Python. Each level of indentation should be consistent.
+
+### Comments
+Comments are used to explain code and make it more readable. Python uses the hash symbol (#) to start a comment.
+
+### Variables
+Variables are used to store data values. In Python, you do not need to declare variables before using them or declare their type. Each variable in Python is an object.
+
+### Data Types
+Python has various standard data types that are used to define the operations possible on them and the storage method for each of them. The following are the standard or built-in data types in Python:
+
+- **Numeric**: int, float, complex
+- **Sequence Type**: list, tuple, range
+- **Text Type**: str
+- **Mapping Type**: dict
+- **Set Types**: set, frozenset
+- **Boolean Type**: bool
+- **Binary Types**: bytes, bytearray, memoryview
+
+### Operators
+Operators are used to perform operations on variables and values. Python supports the following types of operators:
+
+- **Arithmetic Operators**: +, -, *, /, %, **, //
+- **Comparison Operators**: ==, !=, >, <, >=, <=
+- **Logical Operators**: and, or, not
+- **Bitwise Operators**: &, |, ^, ~, <<, >>
+- **Assignment Operators**: =, +=, -=, *=, /=, %=, //=, **=, &=, |=, ^=, >>=, <<=
+- **Identity Operators**: is, is not
+- **Membership Operators**: in, not in
+
+### Control Flow
+Python supports the usual control flow statements known from other languages, with some modifications.
+
+#### if Statements
+The `if` statement is used for conditional execution:
+
+if condition:
+    # execute this block if the condition is true
+elif another_condition:
+    # execute this block if the another_condition is true
+else:
+    # execute this block if none of the above conditions are true
+
+#### for Loops
+The `for` loop in Python is used to iterate over a sequence (such as a list, tuple, dictionary, set, or string):
+
+for element in sequence:
+    # execute this block for each element in the sequence
+
+#### while Loops
+The `while` loop in Python is used to execute a block of code as long as a condition is true:
+
+while condition:
+    # execute this block as long as the condition is true
+
+#### break and continue Statements
+The `break` statement is used to exit a loop prematurely, and the `continue` statement is used to skip the rest of the code inside the loop for the current iteration only.
+
+### Functions
+Functions in Python are defined using the `def` keyword. A function is a block of code that only runs when it is called. You can pass data, known as parameters, into a function. A function can return data as a result.
+
+def function_name(parameters):
+    # function body
+    return value
+
+### Classes and Objects
+Python is an object-oriented programming language. Almost everything in Python is an object, with its properties and methods. A class is like a blueprint for creating objects.
+
+class ClassName:
+    def __init__(self, parameters):
+        # constructor method
+        self.attribute = value
+
+    def method(self):
+        # method body
+
+### Exception Handling
+Python provides a way to handle exceptions using the `try`, `except`, `else`, and `finally` blocks.
+
+try:
+    # code that may raise an exception
+except ExceptionType:
+    # code that runs if the exception occurs
+else:
+    # code that runs if no exception occurs
+finally:
+    # code that runs no matter what
+
+### File Handling
+Python provides functions to create, read, update, and delete files.
+
+with open('filename', 'mode') as file:
+    # perform file operations
+
+### Modules
+A module is a file containing Python code. It can define functions, classes, and variables. You can include the code in a module in another module or script using the `import` statement.
+
+import module_name
+
+### Libraries
+Python has a vast standard library and many third-party libraries that you can install using package managers like `pip`.
+
+import library_name
+
+### Decorators
+Decorators are a very powerful and useful tool in Python since it allows programmers to modify the behavior of a function or class. Decorators allow us to wrap another function in order to extend the behavior of the wrapped function, without permanently modifying it.
+
+def decorator_function(original_function):
+    def wrapper_function(*args, **kwargs):
+        # code to execute before the original function call
+        result = original_function(*args, **kwargs)
+        # code to execute after the original function call
+        return result
+    return wrapper_function
+
+@decorator_function
+def display():
+    print("Display function ran")
+
+### Generators
+Generators are a simple way of creating iterators. A generator is a function that returns an object (iterator) which we can iterate over (one value at a time).
+
+def simple_generator():
+    yield 1
+    yield 2
+    yield 3
+
+for value in simple_generator():
+    print(value)
+
+### List Comprehensions
+List comprehensions provide a concise way to create lists. Common applications are to make new lists where each element is the result of some operations applied to each member of another sequence or iterable.
+
+squares = [x**2 for x in range(10)]
+
+### Lambda Functions
+A lambda function is a small anonymous function. A lambda function can take any number of arguments, but can only have one expression.
+
+add = lambda a, b: a + b
+print(add(5, 3))
+
+### Conclusion
+Python is a versatile and powerful programming language that is easy to learn and use. Its readability and simplicity make it a great choice for beginners, while its extensive libraries and frameworks make it suitable for advanced users and large-scale projects.
+"""

@@ -1,0 +1,39 @@
+[tool.poetry]
+authors = ["stillnurs <stillnurs@gmail.com>"]
+description = ""
+name = "content-splitter"
+readme = "README.md"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+beautifulsoup4 = "^4.12.3"
+click = "^8.1.7"
+python = "^3.13"
+
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.6.8"
+pytest = "^8.3.4"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
+
+[tool.poetry.scripts]
+split_content = "content_splitter.split_content:main"
+
+[tool.coverage.run]
+branch = true
+source = ["content_splitter"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "pass",
+]
+ignore_errors = true
+omit = ["tests/*"]
+skip_empty = true
