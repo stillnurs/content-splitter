@@ -54,8 +54,7 @@ class HTMLFragmentManager:
         """Process a closing HTML tag"""
         if self.stack and self.stack[-1] == tag_name:
             self.stack.pop()
-            if self.saved_tags:
-                self.saved_tags.pop()
+            self.saved_tags.pop()
 
     def handle_opening_tag(self, full_tag: str, tag_name: str) -> None:
         """Process an opening HTML tag"""
@@ -112,8 +111,7 @@ def split_html_content(
                     fm.start_new_fragment()
                 fm.add_content(text)
 
-    if fm.current_fragment:
-        yield fm.create_fragment()
+    yield fm.create_fragment()
 
 
 def split_text_content(
@@ -174,43 +172,37 @@ def split_content(source: str, max_length: int) -> Generator[str, None, None]:
     if not source or max_length <= 0:
         return
 
-    try:
-        if BeautifulSoup(source, "html.parser").find():
-            yield from split_html_content(source, max_length)
-        else:
-            yield from split_text_content(source, max_length)
-    except (AttributeError, TypeError) as e:
-        raise TypeError("Invalid input format") from e
+    if BeautifulSoup(source, "html.parser").find():
+        yield from split_html_content(source, max_length)
+    else:
+        yield from split_text_content(source, max_length)
 
 
-def main() -> None:
+@click.command()
+@click.option(
+    "--max-len",
+    default=4096,
+    help="Maximum fragment length. Default is 4096.",
+)
+@click.argument("file", type=click.File("r"), default="-")
+def main(max_len: int, file: click.File) -> None:
     """
     CLI entry point for splitting content content into fragments.
     """
+    if not os.path.exists("fragments"):
+        os.makedirs("fragments")
 
-    @click.command()
-    @click.option(
-        "--max-len",
-        default=4096,
-        help="Maximum fragment length. Default is 4096.",
-    )
-    @click.argument("file", type=click.File("r"), default="-")
-    def cli(max_len: int, file: click.File) -> None:
-        content = file.read()
-        if not os.path.exists("fragments"):
-            os.makedirs("fragments")
-        for i, fragment in enumerate(split_content(content, max_len), 1):
-            click.echo(f"fragment #{i}: {len(fragment)} chars.")
-            click.echo("-" * 20)
-            # write to file check if html or text
-            if BeautifulSoup(content, "html.parser").find():
-                with open(f"fragments/fragment_html_{i}.html", "w") as f:
-                    f.write(fragment)
-            else:
-                with open(f"fragments/fragment_text_{i}.txt", "w") as f:
-                    f.write(fragment)
-
-    cli()
+    content = file.read()
+    for i, fragment in enumerate(split_content(content, max_len), 1):
+        click.echo(f"fragment #{i}: {len(fragment)} chars.")
+        click.echo("-" * 20)
+        # write to file check if html or text
+        if BeautifulSoup(content, "html.parser").find():
+            with open(f"fragments/fragment_html_{i}.html", "w") as f:
+                f.write(fragment)
+        else:
+            with open(f"fragments/fragment_text_{i}.txt", "w") as f:
+                f.write(fragment)
 
 
 if __name__ == "__main__":
